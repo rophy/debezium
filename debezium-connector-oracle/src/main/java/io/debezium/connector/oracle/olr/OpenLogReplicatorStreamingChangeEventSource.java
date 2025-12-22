@@ -417,6 +417,10 @@ public class OpenLogReplicatorStreamingChangeEventSource implements StreamingCha
                 "This may indicate a potential error in your configuration.", tableId);
         final String tableDdl;
         try {
+            if (!jdbcConnection.isConnected()) {
+                // Explicitly reconnect if the connection has ended, restoring auto-commit state.
+                jdbcConnection.connection().setAutoCommit(false);
+            }
             tableDdl = jdbcConnection.getTableMetadataDdl(tableId);
         }
         catch (NonRelationalTableException e) {
