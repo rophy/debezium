@@ -42,3 +42,4 @@ jenkins-jobs/docker/artifact-server/plugins
 # AI assistant rules (local only)
 .bob/
 .mvn/wrapper/maven-wrapper.jar
+lib/patch/
